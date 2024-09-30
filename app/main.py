@@ -7,7 +7,7 @@ import os
 app = FastAPI()
 
 # Caminho para o banco de dados SQLite
-DATABASE_URL = "programs_data.db"
+DATABASE_URL = "/app/programs_data.db"
 
 # Cria o banco de dados e a tabela se não existirem
 def create_database():
