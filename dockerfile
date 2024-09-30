@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia o conteúdo da aplicação para dentro do contêiner
 COPY ./app /app
 
+# Garante que a pasta /app tenha permissões de escrita
+RUN chmod -R 777 /app
+
 # Expõe a porta 8000 para o FastAPI
 EXPOSE 8000
 
