@@ -83,3 +83,101 @@ def get_programs():
         raise HTTPException(status_code=404, detail="Nenhum dado encontrado.")
     
     return [{"Program": row[0], "indice": row[1], "count": row[2], "GUID": row[3], "User": row[4], "Hostname": row[5], "id_UserMqn": row[6], "id_execution": row[7], "program_id":row[8]} for row in programs]
+
+@app.get("/programs/by-indice/{indice}")
+def get_programs_by_indice(indice: int):
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT * FROM programs WHERE indice = ?', (indice,))
+    rows = cursor.fetchall()
+    
+    conn.close()
+    
+    if not rows:
+        raise HTTPException(status_code=404, detail="Nenhum dado encontrado para o índice fornecido.")
+    
+    return [{"Program": row[0], "indice": row[1], "count": row[2], "GUID": row[3], "User": row[4], "Hostname": row[5], "id_UserMqn": row[6], "id_execution": row[7], "program_id":row[8]} for row in rows]
+
+
+@app.get("/programs/by-guid/{guid}")
+def get_programs_by_guid(guid: str):
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT * FROM programs WHERE guid = ?', (guid,))
+    rows = cursor.fetchall()
+    
+    conn.close()
+    
+    if not rows:
+        raise HTTPException(status_code=404, detail="Nenhum dado encontrado para o GUID fornecido.")
+    
+    return [{"Program": row[0], "indice": row[1], "count": row[2], "GUID": row[3], "User": row[4], "Hostname": row[5], "id_UserMqn": row[6], "id_execution": row[7], "program_id":row[8]} for row in rows]
+
+
+@app.get("/programs/by-user-mqn/{id_user_mqn}")
+def get_programs_by_user_mqn(id_user_mqn: str):
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT * FROM programs WHERE id_UserMqn = ?', (id_user_mqn,))
+    rows = cursor.fetchall()
+    
+    conn.close()
+    
+    if not rows:
+        raise HTTPException(status_code=404, detail="Nenhum dado encontrado para o id_UserMqn fornecido.")
+    
+    return [{"Program": row[0], "indice": row[1], "count": row[2], "GUID": row[3], "User": row[4], "Hostname": row[5], "id_UserMqn": row[6], "id_execution": row[7], "program_id":row[8]} for row in rows]
+
+
+
+@app.get("/programs/by-execution/{id_execution}")
+def get_programs_by_execution(id_execution: str):
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT * FROM programs WHERE id_execution = ?', (id_execution,))
+    rows = cursor.fetchall()
+    
+    conn.close()
+    
+    if not rows:
+        raise HTTPException(status_code=404, detail="Nenhum dado encontrado para o id_execution fornecido.")
+    
+    return [{"Program": row[0], "indice": row[1], "count": row[2], "GUID": row[3], "User": row[4], "Hostname": row[5], "id_UserMqn": row[6], "id_execution": row[7], "program_id":row[8]} for row in rows]
+
+
+@app.get("/programs/by-program-id/{program_id}")
+def get_programs_by_program_id(program_id: str):
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT * FROM programs WHERE program_id = ?', (program_id,))
+    rows = cursor.fetchall()
+    
+    conn.close()
+    
+    if not rows:
+        raise HTTPException(status_code=404, detail="Nenhum dado encontrado para o program_id fornecido.")
+    
+    return [{"Program": row[0], "indice": row[1], "count": row[2], "GUID": row[3], "User": row[4], "Hostname": row[5], "id_UserMqn": row[6], "id_execution": row[7], "program_id":row[8]} for row in rows]
+
+
+@app.get("/programs/by-hostname/{hostname}")
+def get_programs_by_hostname(hostname: str):
+    conn = sqlite3.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    
+    cursor.execute('SELECT * FROM programs WHERE hostname = ?', (hostname,))
+    rows = cursor.fetchall()
+    
+    conn.close()
+    
+    if not rows:
+        raise HTTPException(status_code=404, detail="Nenhum dado encontrado para o hostname fornecido.")
+    
+    return [{"Program": row[0], "indice": row[1], "count": row[2], "GUID": row[3], "User": row[4], "Hostname": row[5], "id_UserMqn": row[6], "id_execution": row[7], "program_id":row[8]} for row in rows]
+
+

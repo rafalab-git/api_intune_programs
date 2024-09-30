@@ -111,7 +111,7 @@ function Process-And-Upload {
         $jsonBody = $programList | ConvertTo-Json
 
         # URL da API
-        $apiUrl = "http://127.0.0.1:8000/programs"
+        $apiUrl = "http://zabbix.wenz.com.br:8000/programs"#"http://127.0.0.1:8000/programs"
 
         # Envia os dados para a API em lote
         try {
