@@ -7,4 +7,4 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
-      - ./app/programs_data.db:/app/programs_data.db  # Monta o arquivo do banco de dados como volume
+       
